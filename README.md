@@ -1,5 +1,17 @@
-# 编译运行
+# build
+
+```sh
+cd bpf/
+bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
+clang -g -O2 -target bpf -c map_stats.bpf.c -o map_stats.o
+clang -g -O2 -target bpf -c map_owner.bpf.c -o map_owner.o
+
+cd ../
+go run main.go
 ```
+
+# dev build
+```sh
 cd bpf/
 bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
 clang -g -O2 -target bpf -c map_stats.bpf.c -o map_stats.o
